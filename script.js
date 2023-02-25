@@ -41,16 +41,33 @@ function moveEnemies(){
     } 
 }
 
+function displayBullets() {
+    var output = ''
+    for(var i=0; i<bullets.length; i++){
+        output += `<div class='bullet' style='top:${bullets[i].y}px; left:${bullets[i].x}px;'></div>`
+    }
+    document.getElementById("bullets").innerHTML = output;
+}
 
+function moveBullet() {
+    for(var i=0; i<bullets.length; i++){
+        bullets[i].y -= 10;
+        if(bullets[i].y <= 0){
+            // bullets[i].y = "none"
+        }
+    }
+}
 
 function gameLoop(){
     // moveHeroPlane();
     displayEnemies();
     moveEnemies();
+    displayBullets();
+    moveBullet();
     // console.log(enemyLoc[0].y)
 }
 
-setInterval(gameLoop, 20);
+setInterval(gameLoop, 200);
 
 function shootSFX(){
     var audio = new Audio("shoot-sound-effect.mp3")
@@ -75,6 +92,6 @@ document.onkeydown = function(e){
     if(e.key == " "){
         shootSFX();
         bullets.push({x: heroLoc.x, y: heroLoc.y})
-
+        displayBullets();
     }
 }
