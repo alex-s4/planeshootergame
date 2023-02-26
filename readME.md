@@ -6,6 +6,6 @@
 
 Features to be released soon
 
-Get another type of enemy airplane to show up
-Collision Detection for the airplanes – when the hero collides with the enemy, have your score go down by 500
-Get the enemy to explode when it is hit
+1. Get another type of enemy airplane to show up
+2. Collision Detection for the airplanes – when the hero collides with the enemy, have your score go down by 500
+3. Get the enemy to explode when it is hit
