@@ -12,7 +12,9 @@ var enemyLoc = [
     { x: 150, y: 210 },
     { x: 250, y: 180 },
     { x: 350, y: 12 },
-    { x: 450, y: 300 }
+    { x: 450, y: 300 },
+    { x: 420, y: 100 },
+    { x: 115, y: 225 }
 ]
 
 var bullets = [];
@@ -78,7 +80,7 @@ function detectCollision(){
             
             if(Math.abs(bullets[i].x - (enemyLoc[j].x+8)) < 14 && 
             Math.abs(bullets[i].y - enemyLoc[j].y) < 8){
-                console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
+                // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
                 enemyLoc[j].y = 0;
                 enemyLoc[j].x = Math.random()*500
                 // bullets[i].y = 0
