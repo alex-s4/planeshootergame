@@ -88,6 +88,7 @@ function detectCollision(){
                 enemyLoc[j].x = Math.random()*500
                 score += 10
                 scoreDisp.innerText = score
+                shootSFX();
             }
         }
     }
@@ -118,7 +119,7 @@ document.onkeydown = function(e){
     moveHeroPlane()
 
     if(e.key == " "){
-        shootSFX();
+        // shootSFX();
         bullets.push({x: heroLoc.x+6, y: heroLoc.y-8})
         displayBullets();
     }
