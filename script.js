@@ -53,10 +53,14 @@ function moveBullet() {
     for(var i=0; i<bullets.length; i++){
         bullets[i].y -= 10;
         if(bullets[i].y <= 0){
-            // bullets[i].y = "none"
+            bullets.shift();
         }
     }
 }
+
+// function animationBullet(){
+//     moveBullet();
+//     displayBullets();
 
 function gameLoop(){
     // moveHeroPlane();
@@ -64,14 +68,32 @@ function gameLoop(){
     moveEnemies();
     displayBullets();
     moveBullet();
+    detectCollision()
     // console.log(enemyLoc[0].y)
 }
 
-setInterval(gameLoop, 200);
+function detectCollision(){
+    for(var i=0; i<bullets.length; i++){
+        for (var j=0; j<enemyLoc.length; j++){
+            
+            if(Math.abs(bullets[i].x - (enemyLoc[j].x+8)) < 14 && 
+            Math.abs(bullets[i].y - enemyLoc[j].y) < 8){
+                console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
+                enemyLoc[j].y = 0;
+                enemyLoc[j].x = Math.random()*500
+                // bullets[i].y = 0
+            }
+        }
+    }
+}
+
+setInterval(gameLoop, 100 );
+setInterval(detectCollision, 1);
+// setInterval(animationBullet, 100)
 
 function shootSFX(){
     var audio = new Audio("shoot-sound-effect.mp3")
-    audio.playbackRate = 2;
+    // audio.playbackRate = .75;
     audio.play();
 }
 
@@ -79,19 +101,19 @@ function shootSFX(){
 document.onkeydown = function(e){
     // console.log(e.key)
     if(e.key == "ArrowLeft" || e.key == "a"){
-        heroLoc.x -= 8
+        heroLoc.x -= 6
     } else if (e.key == "ArrowRight" || e.key == "d"){
-        heroLoc.x += 8
+        heroLoc.x += 6
     } else if (e.key == "ArrowDown" || e.key == "s"){
-        heroLoc.y += 8
+        heroLoc.y += 6
     } else if (e.key == "ArrowUp" || e.key == "w"){
-        heroLoc.y -= 8
+        heroLoc.y -= 6
     }
     moveHeroPlane()
 
     if(e.key == " "){
         shootSFX();
-        bullets.push({x: heroLoc.x, y: heroLoc.y})
+        bullets.push({x: heroLoc.x+6, y: heroLoc.y-8})
         displayBullets();
     }
 }
