@@ -1,6 +1,9 @@
 var heroPlane = document.getElementById("hero");
 var enemyPlane = document.getElementsByClassName("enemy1")
 var shootSound = document.querySelector(".shoot-sound")
+var scoreDisp = document.getElementById("score")
+
+var score = 0
 
 var heroLoc = {
     x: 300,
@@ -83,7 +86,8 @@ function detectCollision(){
                 // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
                 enemyLoc[j].y = 0;
                 enemyLoc[j].x = Math.random()*500
-                // bullets[i].y = 0
+                score += 10
+                scoreDisp.innerText = score
             }
         }
     }
