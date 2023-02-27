@@ -90,6 +90,7 @@ function bulletCollision(){
                 // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
                 enemyLoc[j].y = 0;
                 enemyLoc[j].x = Math.random()*500
+                bullets.splice(i, 1)
                 score += 10
                 scoreDisp.innerText = score
                 shootSFX();
@@ -100,19 +101,19 @@ function bulletCollision(){
 
 function planeCollision(){
     for(var i=0; i<enemyLoc.length; i++){
-        if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 18 && Math.abs(heroLoc.y - enemyLoc[i].y) < 12){
-            collisionSFX();
-            enemyLoc[i].y = 0;
-            enemyLoc[i].x = Math.random()*500
-            score -= 500;
-            scoreDisp.innerText = score
-            // console.log("collided w/ plane", i)
-        }
+            if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 18 && Math.abs(heroLoc.y - enemyLoc[i].y) < 12){
+                collisionSFX();
+                enemyLoc[i].y = 0;
+                enemyLoc[i].x = Math.random()*500
+                score -= 500;
+                scoreDisp.innerText = score
+                // console.log("collided w/ plane", i)
+            }   
     }
 }
 
 setInterval(gameLoop, 100);
-setInterval(bulletCollision, 1);
+setInterval(bulletCollision, 100);
 setInterval(planeCollision, 10)
 
 function shootSFX(){
