@@ -102,14 +102,16 @@ function planeCollision(){
     for(var i=0; i<enemyLoc.length; i++){
         if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 14 && Math.abs(heroLoc.y - enemyLoc[i].y) < 8){
             collisionSFX();
-            console.log("collided w/ plane", i)
+            score -= 500;
+            scoreDisp.innerText = score
+            // console.log("collided w/ plane", i)
         }
     }
 }
 
 setInterval(gameLoop, 100);
 setInterval(bulletCollision, 1);
-setInterval(planeCollision, 300)
+setInterval(planeCollision, 200)
 
 function shootSFX(){
     var audio = new Audio("shoot-sound-effect.mp3")
