@@ -30,7 +30,11 @@ function moveHeroPlane(){
 function displayEnemies(){
     var output = '';
     for(var i=0; i<enemyLoc.length; i++){
-        output += `<div class='enemy1' style='top:${enemyLoc[i].y}px; left:${enemyLoc[i].x}px;'></div>`
+        if (i%2==0){
+            output += `<div class='enemy1' style='top:${enemyLoc[i].y}px; left:${enemyLoc[i].x}px;'></div>`
+        } else if (i%2==1){
+            output += `<div class='enemy2' style='top:${enemyLoc[i].y}px; left:${enemyLoc[i].x}px;'></div>`
+        }
     }
     document.getElementById("enemies").innerHTML = output;
 }

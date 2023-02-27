@@ -35,6 +35,14 @@ body{
     height:28px;
     position:absolute;
 }
+.enemy2{
+    background: url('1942.gif');
+    background-position: 155px -59px;
+    width:24px;
+    height:24px;
+    position:absolute;
+    transform: scale(1.5);
+}
 
 .bullet{
     background: url('1942.gif');
