@@ -73,7 +73,7 @@ function gameLoop(){
     moveEnemies();
     displayBullets();
     moveBullet();
-    // detectCollision();
+    // bulletCollision();
     // console.log(enemyLoc[0].y)
 }
 
@@ -101,18 +101,25 @@ function bulletCollision(){
 function planeCollision(){
     for(var i=0; i<enemyLoc.length; i++){
         if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 14 && Math.abs(heroLoc.y - enemyLoc[i].y) < 8){
+            collisionSFX();
             console.log("collided w/ plane", i)
         }
     }
 }
 
-setInterval(gameLoop, 100 );
+setInterval(gameLoop, 100);
 setInterval(bulletCollision, 1);
 setInterval(planeCollision, 300)
 
 function shootSFX(){
     var audio = new Audio("shoot-sound-effect.mp3")
     // audio.playbackRate = .75;
+    audio.play();
+}
+
+function collisionSFX(){
+    var audio = new Audio("collisionSFX.mp3")
+    audio.playbackRate = 1.2;
     audio.play();
 }
 
