@@ -51,6 +51,19 @@ body{
     height:18px;
     position:absolute;
 }
+
+.explode-seq1, .explode-seq2, .explode-seq3 {
+    background: url('1942.gif');
+    width:28px;
+    height:28px;
+    position:absolute;
+    /* transform: scale(1.5); */
+}
+
+.explode-seq1 { background-position: -35px -35px; }
+.explode-seq2 { background-position: -60px -35px; }
+.explode-seq3 { background-position: -82px -35px; }
+
 #score{
     position:absolute;
     border:10px solid red;
