@@ -73,14 +73,18 @@ function gameLoop(){
     moveEnemies();
     displayBullets();
     moveBullet();
-    detectCollision()
+    // detectCollision();
     // console.log(enemyLoc[0].y)
 }
 
-function detectCollision(){
+// function detectCollision(){
+//     bulletCollision();
+//     planeCollision();
+// }
+
+function bulletCollision(){
     for(var i=0; i<bullets.length; i++){
         for (var j=0; j<enemyLoc.length; j++){
-            
             if(Math.abs(bullets[i].x - (enemyLoc[j].x+8)) < 14 && 
             Math.abs(bullets[i].y - enemyLoc[j].y) < 8){
                 // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
@@ -94,9 +98,17 @@ function detectCollision(){
     }
 }
 
+function planeCollision(){
+    for(var i=0; i<enemyLoc.length; i++){
+        if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 14 && Math.abs(heroLoc.y - enemyLoc[i].y) < 8){
+            console.log("collided w/ plane", i)
+        }
+    }
+}
+
 setInterval(gameLoop, 100 );
-setInterval(detectCollision, 1);
-// setInterval(animationBullet, 100)
+setInterval(bulletCollision, 1);
+setInterval(planeCollision, 300)
 
 function shootSFX(){
     var audio = new Audio("shoot-sound-effect.mp3")
