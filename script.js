@@ -1,7 +1,8 @@
 var heroPlane = document.getElementById("hero");
-var enemyPlane = document.getElementsByClassName("enemy1")
+var enemyPlane = document.getElementById("enemies");
 var shootSound = document.querySelector(".shoot-sound")
 var scoreDisp = document.getElementById("score")
+var explosion = document.getElementById("explosion")
 
 var score = 0
 
@@ -67,10 +68,6 @@ function moveBullet() {
     }
 }
 
-// function animationBullet(){
-//     moveBullet();
-//     displayBullets();
-
 function gameLoop(){
     // moveHeroPlane();
     displayEnemies();
@@ -81,18 +78,21 @@ function gameLoop(){
 }
 
 function bulletCollision(){
+    
     for(var i=0; i<bullets.length; i++){
         for (var j=0; j<enemyLoc.length; j++){
             if(Math.abs(bullets[i].x - (enemyLoc[j].x+8)) < 14 && 
             Math.abs(bullets[i].y - enemyLoc[j].y) < 8){
                 // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
-                // planeGone()
+                var output = `<div id="explode-seq1" style="top:${bullets[i].y}px; left:${bullets[i].x}px"></div>`
+                explosion.innerHTML = output;
                 enemyLoc[j].y = 0;
                 enemyLoc[j].x = Math.random()*500
                 bullets.splice(i, 1)
                 score += 10
                 scoreDisp.innerText = score
                 shootSFX();
+                console.log(enemyPlane.childNodes[j])
             }
         }
     }
@@ -102,6 +102,7 @@ function planeCollision(){
     for(var i=0; i<enemyLoc.length; i++){
             if(Math.abs(heroLoc.x - (enemyLoc[i].x+8)) < 18 && Math.abs(heroLoc.y - enemyLoc[i].y) < 12){
                 collisionSFX();
+                
                 enemyLoc[i].y = 0;
                 enemyLoc[i].x = Math.random()*500
                 score -= 500;
@@ -112,12 +113,7 @@ function planeCollision(){
 }
 
 function planeGone(){
-    enemyLoc[j].y = 0;
-    enemyLoc[j].x = Math.random()*500
-    bullets.splice(i, 1)
-    score += 10
-    scoreDisp.innerText = score
-    shootSFX();
+    
 }
 
 setInterval(gameLoop, 100);
@@ -125,8 +121,9 @@ setInterval(bulletCollision, 100);
 setInterval(planeCollision, 10)
 
 function shootSFX(){
-    var audio = new Audio("shoot-sound-effect.mp3")
+    var audio = new Audio("Explode.mp3")
     // audio.playbackRate = .75;
+    audio.volume = 0.3;
     audio.play();
 }
 
