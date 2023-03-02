@@ -86,13 +86,14 @@ function bulletCollision(){
                 // console.log('collision: x', Math.abs(bullets[i].x - enemyLoc[j].x), 'collision: y', Math.abs(bullets[i].y - enemyLoc[j].y))
                 var output = `<div id="explode-seq1" style="top:${bullets[i].y}px; left:${bullets[i].x}px"></div>`
                 explosion.innerHTML = output;
+                setTimeout(removeExplosion, 2000)
                 enemyLoc[j].y = 0;
                 enemyLoc[j].x = Math.random()*500
                 bullets.splice(i, 1)
                 score += 10
                 scoreDisp.innerText = score
                 shootSFX();
-                console.log(enemyPlane.childNodes[j])
+                // console.log(enemyPlane.childNodes[j])
             }
         }
     }
@@ -110,6 +111,10 @@ function planeCollision(){
                 // console.log("collided w/ plane", i)
             }   
     }
+}
+
+function removeExplosion(){
+    explosion.removeChild(document.getElementById("explode-seq1"))
 }
 
 function planeGone(){
