@@ -117,10 +117,6 @@ function removeExplosion(){
     explosion.removeChild(document.getElementById("explode-seq1"))
 }
 
-function planeGone(){
-    
-}
-
 setInterval(gameLoop, 100);
 setInterval(bulletCollision, 100);
 setInterval(planeCollision, 10)
